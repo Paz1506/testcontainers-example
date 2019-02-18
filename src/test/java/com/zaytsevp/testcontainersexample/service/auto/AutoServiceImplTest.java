@@ -43,9 +43,6 @@ class AutoServiceImplTest {
     @Test
     void create() {
         // Prepare
-        when(auto.getFoundYear()).thenReturn(foundYear);
-        when(auto.getName()).thenReturn(name);
-        when(auto.getTypes()).thenReturn(types);
         when(autoRepository.save(any(Auto.class))).thenReturn(auto);
 
         // Actual
