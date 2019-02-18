@@ -71,6 +71,21 @@
 			<artifactId>querydsl-jpa</artifactId>
 			<version>4.1.4</version>
 		</dependency>
+
+		<!-- Tests -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.3.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- DB -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

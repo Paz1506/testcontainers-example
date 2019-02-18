@@ -1,4 +1,4 @@
-package com.zaytsevp.testcontainersexample.repository;
+package com.zaytsevp.testcontainersexample.repository.auto;
 
 import com.zaytsevp.testcontainersexample.model.Auto;
 import org.springframework.data.jpa.repository.JpaRepository;

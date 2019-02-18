@@ -1,6 +1,5 @@
 package com.zaytsevp.testcontainersexample.model;
 
-import com.google.common.collect.Sets;
 import lombok.*;
 
 import javax.persistence.*;
@@ -40,5 +39,5 @@ public class Auto extends BaseEntity {
      */
     @Column(name = "AUTO_TYPE")
     @ElementCollection(fetch = FetchType.EAGER)
-    private Set<AutoType> types = Sets.newHashSet(AutoType.LIGHT);
+    private Set<AutoType> types;
 }

@@ -1,17 +1,15 @@
-package com.zaytsevp.testcontainersexample.service;
+package com.zaytsevp.testcontainersexample.service.auto;
 
 import com.google.common.collect.Sets;
 import com.zaytsevp.testcontainersexample.model.Auto;
 import com.zaytsevp.testcontainersexample.model.AutoType;
-import com.zaytsevp.testcontainersexample.repository.AutoRepository;
+import com.zaytsevp.testcontainersexample.repository.auto.AutoRepository;
+import com.zaytsevp.testcontainersexample.util.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class AutoServiceImpl implements AutoService {
@@ -21,6 +19,23 @@ public class AutoServiceImpl implements AutoService {
     @Autowired
     public AutoServiceImpl(AutoRepository autoRepository) {
         this.autoRepository = autoRepository;
+    }
+
+    @Override
+    @Transactional
+    public Auto create(String name, int foundYear, Set<AutoType> types) {
+
+        Validator.validateStringParam(name, "Auto name is invalid");
+        Validator.validateCollectionParam(types, "Auto types is invalid (null or empty)");
+        Validator.validateByCondition((foundYear >= 1768), "Build year is invalid");
+
+        Auto auto = Auto.builder()
+                        .name(name)
+                        .foundYear(foundYear)
+                        .types(types)
+                        .build();
+
+        return autoRepository.save(auto);
     }
 
     @Override

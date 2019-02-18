@@ -1,5 +1,6 @@
 package com.zaytsevp.testcontainersexample.model;
 
+import com.zaytsevp.testcontainersexample.util.Validator;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,8 +14,12 @@ import javax.persistence.*;
 public class Model extends BaseEntity {
 
     @Builder
-    public Model(Auto auto, String name, int buildYear) {
+    public Model(Auto auto, String name, AutoType type, int buildYear) {
+
+        Validator.validateAutoType(auto, type);
+
         this.auto = auto;
+        this.type = type;
         this.name = name;
         this.buildYear = buildYear;
     }
