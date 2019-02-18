@@ -13,15 +13,12 @@ public class Validator {
 
     /** Проверяет, может ли производитель выпускать такой тип авто */
     public static void validateAutoType(Auto auto, AutoType type) {
-        if (auto == null || type == null) {
-            throw new IllegalArgumentException("Invalid(null) argument Auto or Type");
-        }
 
         if (!auto.getTypes().contains(type)) {
-            throw new IllegalArgumentException("Invalid type for auto " + auto.toString());
+            throw new IllegalArgumentException("Invalid type for auto " + auto.getName());
         }
 
-        log.info("Successful validation auto:{} & type {}", auto.getName(), type);
+        log.info("Successful validation auto: {} & type: {}", auto.getName(), type);
     }
 
     /** Валидация строкового параметра */
