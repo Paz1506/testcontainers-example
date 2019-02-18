@@ -80,6 +80,19 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>com.github.database-rider</groupId>
+			<artifactId>rider-core</artifactId>
+			<version>1.5.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.github.database-rider</groupId>
+			<artifactId>rider-junit5</artifactId>
+			<version>1.5.2</version>
+			<scope>test</scope>
+		</dependency>
+
 		<!-- DB -->
 		<dependency>
 			<groupId>com.h2database</groupId>
