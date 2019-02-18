@@ -23,7 +23,7 @@ public class Validator {
 
     /** Валидация строкового параметра */
     public static void validateStringParam(String param, String error) {
-        if (StringUtils.isEmpty(param)) throw new IllegalArgumentException(error);
+        if (!StringUtils.hasText(param)) throw new IllegalArgumentException(error);
     }
 
     /** Валидация коллекции */
