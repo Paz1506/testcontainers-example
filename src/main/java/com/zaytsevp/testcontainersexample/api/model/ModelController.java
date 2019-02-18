@@ -35,7 +35,7 @@ public class ModelController {
                         @RequestParam(value = "buildYear") int build,
                         @RequestParam(value = "type") AutoType type) {
 
-        Auto auto = autoService.getById(autoId).get();
+        Auto auto = autoService.getById(autoId).orElse(null);
 
         return modelService.create(auto, name, type, build);
     }
