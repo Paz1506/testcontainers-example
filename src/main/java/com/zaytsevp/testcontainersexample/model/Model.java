@@ -1,5 +1,6 @@
 package com.zaytsevp.testcontainersexample.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.zaytsevp.testcontainersexample.util.Validator;
 import lombok.*;
 
@@ -28,13 +29,14 @@ public class Model extends BaseEntity {
      * Тип авто
      */
     @Enumerated(EnumType.STRING)
-    @Column(name = "TYPE", nullable = false, updatable = false)
+    @Column(name = "AUTO_TYPE", nullable = false, updatable = false)
     private AutoType type;
 
     /**
      * Ссылка на авто
      */
-    @OneToMany(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "AUTO_ID", nullable = false)
     private Auto auto;
 

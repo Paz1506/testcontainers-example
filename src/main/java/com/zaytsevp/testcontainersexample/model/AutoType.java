@@ -1,5 +1,5 @@
 package com.zaytsevp.testcontainersexample.model;
 
 public enum AutoType {
-    LIGHT, OFFROAD, UNIVERSAL, TRUCK, MINIVAN
+    LIGHT, OFFROAD, UNIVERSAL, TRUCK
 }
