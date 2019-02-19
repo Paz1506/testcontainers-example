@@ -1,7 +1,8 @@
 package com.zaytsevp.testcontainersexample.api.auto;
 
 import com.github.database.rider.core.api.dataset.DataSet;
-import com.github.database.rider.junit5.api.DBRider;
+//import com.github.database.rider.junit5.api.DBRider;
+import com.github.database.rider.spring.api.DBRider;
 import com.zaytsevp.testcontainersexample.config.PostgresTestcontainersExtension;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
