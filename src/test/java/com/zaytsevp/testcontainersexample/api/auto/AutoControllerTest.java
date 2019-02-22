@@ -42,7 +42,8 @@ class AutoControllerTest {
         CreateAutoDto createAutoDto = CreateAutoDto.builder()
                                                    .name(name)
                                                    .foundYear(foundYear)
-                                                   .types(types).build();
+                                                   .types(types)
+                                                   .build();
 
         // Actual
         Auto actualResult = autoController.create(createAutoDto);
