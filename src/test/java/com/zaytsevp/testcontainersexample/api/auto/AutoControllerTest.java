@@ -1,6 +1,7 @@
 package com.zaytsevp.testcontainersexample.api.auto;
 
 import com.google.common.collect.Sets;
+import com.zaytsevp.testcontainersexample.api.auto.dto.in.CreateAutoDto;
 import com.zaytsevp.testcontainersexample.model.Auto;
 import com.zaytsevp.testcontainersexample.model.AutoType;
 import com.zaytsevp.testcontainersexample.service.auto.AutoService;
@@ -38,9 +39,13 @@ class AutoControllerTest {
     void create() {
         // Prepare
         when(autoService.create(anyString(), anyInt(), any(Set.class))).thenReturn(auto);
+        CreateAutoDto createAutoDto = CreateAutoDto.builder()
+                                                   .name(name)
+                                                   .foundYear(foundYear)
+                                                   .types(types).build();
 
         // Actual
-        Auto actualResult = autoController.create(name, foundYear, types);
+        Auto actualResult = autoController.create(createAutoDto);
 
         // Assertion
         verify(autoService).create(name, foundYear, types);

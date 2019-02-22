@@ -27,13 +27,10 @@ import java.util.UUID;
  *
  * @author Pavel Zaytsev
  */
-//@RunWith(SpringRunner.class)
-@SpringBootTest //Так работает
-//@DataJpaTest // Так валится с ошибкой констрейнта при очистке таблиц
+@SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) // при ANY - также schema null
 @ExtendWith(PostgresTestcontainersExtension.class)
 @DBRider
-//@ContextConfiguration
 class AutoRepositoryITWithExtension {
 
     @Autowired
@@ -46,7 +43,7 @@ class AutoRepositoryITWithExtension {
         // Actual
         List<Auto> all = repository.findAll();
 
-        // Assertions
+        // Assertion
         Assertions.assertEquals(2, all.size());
 
         Auto auto = all.get(0);
