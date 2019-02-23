@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Propagation;
@@ -30,7 +30,7 @@ import java.util.UUID;
  *
  * @author Pavel Zaytsev
  */
-@SpringBootTest
+@DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @DBRider
 @DBUnit(caseInsensitiveStrategy = Orthography.LOWERCASE, url = "jdbc:tc:postgresql://localhost/test", user = "test")
@@ -41,6 +41,7 @@ class AutoRepositoryITWithProps {
     private AutoRepository repository;
 
     @Test
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     @DataSet(value = "/datasets/auto.json", cleanBefore = true, cleanAfter = true)
     void testFindAll() {
         // Actual
@@ -76,6 +77,7 @@ class AutoRepositoryITWithProps {
     }
 
     @Test
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     @DataSet(value = "/datasets/auto.json", cleanBefore = true, cleanAfter = true)
     void testFindById() {
         // Prepare

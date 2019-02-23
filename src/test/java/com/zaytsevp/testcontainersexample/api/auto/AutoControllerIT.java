@@ -42,7 +42,7 @@ class AutoControllerIT {
     private MockMvc mockMvc;
 
     @Autowired
-    ObjectMapper mapper;
+    private ObjectMapper mapper;
 
     private final UUID id = UUID.fromString("00000000-0000-0000-0000-000000000000");
 

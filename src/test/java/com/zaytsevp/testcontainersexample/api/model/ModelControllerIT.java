@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.database.rider.core.api.dataset.DataSet;
 import com.github.database.rider.core.api.dataset.ExpectedDataSet;
 import com.github.database.rider.spring.api.DBRider;
+import com.google.common.collect.Sets;
 import com.zaytsevp.testcontainersexample.api.model.in.CreateModelDto;
 import com.zaytsevp.testcontainersexample.config.PostgresTestcontainersExtension;
 import com.zaytsevp.testcontainersexample.model.AutoType;
@@ -39,7 +40,7 @@ class ModelControllerIT {
     private MockMvc mockMvc;
 
     @Autowired
-    ObjectMapper mapper;
+    private ObjectMapper mapper;
 
     private final UUID id = UUID.fromString("00000000-0000-0000-0000-000000000000");
 
@@ -75,7 +76,7 @@ class ModelControllerIT {
     @DataSet(value = "/datasets/model.json", cleanBefore = true, cleanAfter = true)
     void getAll() throws Exception {
         // Actual & Assertion
-        List<Model> actualResult = mapper.readValue(mockMvc.perform(MockMvcRequestBuilders.get("/autos/all"))
+        List<Model> actualResult = mapper.readValue(mockMvc.perform(MockMvcRequestBuilders.get("/models/all"))
                                                            .andExpect(MockMvcResultMatchers.status()
                                                                                            .isOk())
                                                            .andDo(print())
@@ -87,7 +88,20 @@ class ModelControllerIT {
     }
 
     @Test
-    void getById() {
-    }
+    @DataSet(value = "/datasets/model.json", cleanBefore = true, cleanAfter = true)
+    void getById() throws Exception {
+        // Actual & Assertion
+        Model actualResult = mapper.readValue(mockMvc.perform(MockMvcRequestBuilders.get("/models/" + id))
+                                                    .andExpect(MockMvcResultMatchers.status()
+                                                                                    .isOk())
+                                                    .andDo(print())
+                                                    .andReturn()
+                                                    .getResponse()
+                                                    .getContentAsByteArray(), Model.class);
 
+        Assertions.assertEquals(2019, actualResult.getBuildYear());
+        Assertions.assertEquals("model1", actualResult.getName());
+        Assertions.assertEquals(AutoType.LIGHT, actualResult.getType());
+        Assertions.assertEquals(id, actualResult.getAuto().getId());
+    }
 }
