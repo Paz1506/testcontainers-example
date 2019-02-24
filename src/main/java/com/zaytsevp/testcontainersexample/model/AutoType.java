@@ -1,5 +1,7 @@
 package com.zaytsevp.testcontainersexample.model;
 
-public enum AutoType {
+import java.io.Serializable;
+
+public enum AutoType implements Serializable {
     LIGHT, OFFROAD, UNIVERSAL, TRUCK
 }

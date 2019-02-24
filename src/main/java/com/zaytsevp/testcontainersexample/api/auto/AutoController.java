@@ -1,16 +1,16 @@
 package com.zaytsevp.testcontainersexample.api.auto;
 
+import com.zaytsevp.testcontainersexample.api.auto.dto.in.CreateAutoDto;
 import com.zaytsevp.testcontainersexample.model.Auto;
-import com.zaytsevp.testcontainersexample.model.AutoType;
 import com.zaytsevp.testcontainersexample.service.auto.AutoService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @RestController
@@ -26,12 +26,12 @@ public class AutoController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation("Создать авто")
-    @PostMapping("/create")
-    public Auto create(@RequestParam(value = "name") String name,
-                       @RequestParam(value = "foundYear") int foundYear,
-                       @RequestParam(value = "types") Set<AutoType> types) {
+    @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Auto create(@RequestBody CreateAutoDto createAutoDto) {
 
-        return autoService.create(name, foundYear, types);
+        return autoService.create(createAutoDto.getName(),
+                                  createAutoDto.getFoundYear(),
+                                  createAutoDto.getTypes());
     }
 
     @ApiOperation("Все авто")

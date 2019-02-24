@@ -77,21 +77,25 @@
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
 			<version>5.3.2</version>
-			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.3.2</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.github.database-rider</groupId>
-			<artifactId>rider-core</artifactId>
+			<artifactId>rider-spring</artifactId>
 			<version>1.5.2</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.github.database-rider</groupId>
-			<artifactId>rider-junit5</artifactId>
-			<version>1.5.2</version>
-			<scope>test</scope>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>com.github.database-rider</groupId>-->
+			<!--<artifactId>rider-junit5</artifactId>-->
+			<!--<version>1.5.2</version>-->
+			<!--<scope>test</scope>-->
+		<!--</dependency>-->
 
 		<!-- DB -->
 		<dependency>
@@ -99,6 +103,23 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
+		<!-- Testcontainers -->
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>testcontainers</artifactId>
+			<version>1.10.6</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.testcontainers/postgresql -->
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>1.10.6</version>
+			<scope>compile</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>

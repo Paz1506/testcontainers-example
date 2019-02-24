@@ -1,7 +1,7 @@
 package com.zaytsevp.testcontainersexample.api.model;
 
+import com.zaytsevp.testcontainersexample.api.model.in.CreateModelDto;
 import com.zaytsevp.testcontainersexample.model.Auto;
-import com.zaytsevp.testcontainersexample.model.AutoType;
 import com.zaytsevp.testcontainersexample.model.Model;
 import com.zaytsevp.testcontainersexample.service.auto.AutoService;
 import com.zaytsevp.testcontainersexample.service.model.ModelService;
@@ -30,14 +30,11 @@ public class ModelController {
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation("Создать модель авто")
     @PostMapping("/create")
-    public Model create(@RequestParam(value = "autoId") UUID autoId,
-                        @RequestParam(value = "name") String name,
-                        @RequestParam(value = "buildYear") int build,
-                        @RequestParam(value = "type") AutoType type) {
+    public Model create(@RequestBody CreateModelDto createModelDto) {
 
-        Auto auto = autoService.getById(autoId).orElse(null);
+        Auto auto = autoService.getById(createModelDto.getAutoId()).orElse(null);
 
-        return modelService.create(auto, name, type, build);
+        return modelService.create(auto, createModelDto.getName(), createModelDto.getType(), createModelDto.getBuildYear());
     }
 
     @ApiOperation("Все модели авто")
